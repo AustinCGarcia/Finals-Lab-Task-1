@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finals Lab Task 1 - MySQL Database</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #000 30%, #020f1f 70%);
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0a0a0a;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 10px white;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes color-change {
+      0% { color: white; }
+      50% { color: #00f0ff; }
+      100% { color: white; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      animation: color-change 10s ease-in-out infinite;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00f0ff;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2.section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid white;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .step-process {
+      margin-top: 20px;
+    }
+
+    .step-process h3 {
+      font-size: 1.5rem;
+      margin: 20px 0 10px;
+    }
+
+    .step-process ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-process ul li {
+      margin-bottom: 10px;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: 2px solid white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      cursor: pointer;
+    }
+
+    .project-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.8);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00f0ff, #007fff);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    .download-btn i {
+      margin-right: 10px;
+    }
+
+    .download-btn:hover {
+      background: white;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid white;
+      background: #0a0a0a;
+      margin-top: 40px;
+      color: #aaa;
+    }
+
+    .preview-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+
+    .preview-modal img {
+      max-width: 80%;
+      max-height: 80%;
+      transition: transform 0.3s ease;
+    }
+
+    .preview-modal.show {
+      display: flex;
+    }
+
+    .preview-modal .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      color: white;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .preview-modal .close-btn:hover {
+      background: rgba(255, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Finals Lab Task 1 - MySQL Database</h1>
+    <nav>
+      <a href="https://austincgarcia.github.io/AustinEDM/">Back to Portfolio</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2 class="section-title">Project Overview</h2>
+    <p>This portfolio focuses on learning the fundamentals of MySQL by working with a multi-level company database. It includes writing SQL queries, designing table structures, creating EER diagrams, and executing SQL scripts that define the database and relationships.</p>
+
+    <a href="https://github.com/user-attachments/files/19708478/GARCIA.-.LAB.TASK.1.-.FINALS.docx" class="download-btn" target="_blank">
+      <i class="fas fa-file-download"></i> Download Document
+    </a>
+
+    <div class="step-process">
+      <h3>Database Structure</h3>
+      <ul>
+        <li>Employees table includes auto-incrementing ID, name (not null), and manager reference.</li>
+        <li>Departments table includes auto-incrementing ID and department name.</li>
+        <li>Employee_Departments uses composite keys to map employees to departments.</li>
+        <li>Employee_Projects stores project names per employee (not null).</li>
+        <li>Managers table relates managers to employees using foreign key references.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Query Statements</h2>
+
+    <img src="https://github.com/user-attachments/assets/ad398321-e9ed-44c4-9e6d-2470584f9fc6" alt="Task 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/ff6eb8df-8811-473e-9baa-6508b314d5e3" alt="Task 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/6a304718-cafc-4d4f-8b65-aaff2b0bc288" alt="Task 3" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/52856c66-1270-4b29-a37e-dc0574726008" alt="Task 4" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/d6872b16-2a75-43c3-a01a-3e321cc5409e" alt="Task 5" class="project-image" onclick="openPreview(this)">
+
+    <h2 class="section-title">Table Structures</h2>
+
+    <h3>Employee Table</h3>
+    <img src="https://github.com/user-attachments/assets/6c129109-9840-449f-809f-d896f03b5191" alt="Employee Table" class="project-image" onclick="openPreview(this)">
+
+    <h3>Department Table</h3>
+    <img src="https://github.com/user-attachments/assets/4de56636-0640-4d1f-8f72-155b95e462d8" alt="Department Table" class="project-image" onclick="openPreview(this)">
+
+    <h3>Employee Department Table</h3>
+    <img src="https://github.com/user-attachments/assets/4de56636-0640-4d1f-8f72-155b95e462d8" alt="Employee Department Table" class="project-image" onclick="openPreview(this)">
+
+    <h3>Employee Project Table</h3>
+    <img src="https://github.com/user-attachments/assets/f276f70f-b89e-45d2-90d3-500aa83781b9" alt="Employee Project Table" class="project-image" onclick="openPreview(this)">
+
+    <h3>Manager Table</h3>
+    <img src="https://github.com/user-attachments/assets/8651397a-c3b2-425d-83ca-453214b92201" alt="Manager Table" class="project-image" onclick="openPreview(this)">
+
+    <h2 class="section-title">EER Diagram</h2>
+    <img src="https://github.com/user-attachments/assets/6f64c8c1-a6f6-488d-8dbe-fb3503041faa" alt="EER Diagram" class="project-image" onclick="openPreview(this)">
+  </section>
+
+  <footer>
+    <p>© 2025 Austin's EDM Portfolio. All rights reserved.</p>
+  </footer>
+
+  <div id="preview-modal" class="preview-modal">
+    <button class="close-btn" onclick="closePreview()">×</button>
+    <img id="preview-image" src="" alt="Preview Image">
+  </div>
+
+  <script>
+    function openPreview(image) {
+      var modal = document.getElementById("preview-modal");
+      var previewImage = document.getElementById("preview-image");
+      previewImage.src = image.src;
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePreview() {
+      var modal = document.getElementById("preview-modal");
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+  </script>
+
+</body>
+</html>
 
